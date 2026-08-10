@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Customers</title>
+    <style>
+        body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f6fa;
+        margin: 0;
+        padding: 30px;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    form {
+        width: 500px;
+        max-width: 90%;
+        margin: 30px auto;
+        padding: 25px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    label {
+        display: inline-block;
+        width: 100px;
+        margin-bottom: 15px;
+    }
+
+    input {
+        padding: 9px;
+        width: 250px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    button {
+        padding: 9px 16px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        background-color: #222;
+        color: white;
+        margin-top: 10px;
+    }
+
+    button:hover {
+        background-color: #444;
+    }
+
+    a {
+        text-decoration: none;
+        color: #3498db;
+    }
+
+    .back {
+        display: block;
+        width: 500px;
+        max-width: 90%;
+        margin: 0 auto;
+    }
+
+    </style>
+</head>
+
+<body>
+    <h1>Update Customer</h1>
+    <a class="back" href="/customers">Back to Customers</a>
+    <br><br>
+
+    <form method="POST">
+
+    <label>Name:</label>
+    <input type="text"
+           name="name"
+           value="{{ customer[1] }}"
+           required>
+
+    <br><br>
+
+    <label>Email:</label>
+    <input type="email"
+           name="email"
+           value="{{ customer[2] }}"
+           required>
+
+    <br><br>
+
+    <label>Phone:</label>
+    <input type="text"
+           name="phone"
+           value="{{ customer[3] }}"
+           required>
+
+    <br><br>
+
+    <label>City:</label>
+    <input type="text"
+           name="city"
+           value="{{ customer[4] }}"
+           required>
+
+    <br><br>
+
+    <label>Password:</label>
+    <input type="password"
+           name="password"
+           value="{{ customer[5] }}"
+           required>
+
+    <br><br>
+
+    <button type="submit">Update Customer</button>
+
+</form>
+    
+</body>
+</html>

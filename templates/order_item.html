@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Customers{% endblock %}
+
+{% block content %}
+    <h1>Order Item Management</h1>
+    <a href="/">Home</a>
+    <h2>Add Order Item</h2>
+
+    <form method="POST">
+        <label>Order Items ID:</label>
+        <input type="number" name="order_id" required>
+        <br><br>
+
+        <label>Product ID:</label>
+        <input type="number" name="product_id" required>
+        <br><br>
+
+        <label>Quantity:</label>
+        <input type="number" name="quantity" min="1" required>
+        <br><br>
+        <button type="submit">Add Order Item</button>
+    </form>
+
+    <table>
+        <tr>
+            <th>Order Item ID</th>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+            <th>Action</th>
+        </tr>
+        {% for item in items %}
+        <tr>
+            <td>{{ item[1] }}</td>
+            <td>{{ item[2] }}</td>
+            <td>{{ item[3] }}</td>
+            <td>{{ item[4] }}</td>
+            <td>{{ item[5] }}</td>
+            <td class="action">
+            <a href="/edit_order_items/{{ item[0] }}">Edit</a>
+            
+            <form method="POST"
+                action="/delete_order_item/{{ item[0] }}"
+                style="display:inline;"
+                onsubmit="return confirm('Are you sure you want to delete this item?');">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+
+            
+
+        </tr>
+        {% endfor %}
+    </table>
+    {% endblock %}

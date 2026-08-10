@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Dashboard</title>
+    <style>
+        body{
+            font-family:Arial;
+            margin:40px;
+            background-color: #f5f5f5;
+        }
+
+        h1{
+            text-align:center;
+
+        }
+
+        .container{
+            display:flex;
+            gap:20px;
+            justify-content:center;
+            margin-top:40px;
+        }
+
+        .card{
+            background-color: white;
+            padding:25px;
+            width:180px;
+            text-align:center;
+            border-radius:10px;
+            box-shadow:0 2px ;
+
+        }
+
+        .card h2{
+            margin-bottom:10px;
+        }
+
+        .card p{
+            font-size:24px;
+            font-weight:bold;
+        }
+
+        .links{
+            text-align:center;
+            margin-top:40px;
+            padding:15px;
+            background-color:#222;
+
+          
+        }
+
+        .links a {
+            display:inline-block;
+            margin: 0 10px;
+            text-decoration:none;
+            padding:10px 20px;
+            border:1px solid white;
+            border-radius:5px;
+            margin-top:50px;
+            color:white;
+            background-color: #333;
+        }
+            
+    </style>
+</head>
+
+<body>
+    <h1>Inventory Management Dashboard</h1>
+
+    <div class="container">
+        <div class="card">
+            <h2>Sales</h2>
+            <p>{{ total_sales }}</p>
+        </div>
+
+        <div class="card">
+            <h2>Orders</h2>
+            <p>{{ total_orders }}</p>
+        </div>
+
+        <div class="card">
+            <h2>Customers</h2>
+            <p>{{ total_customers }}</p>
+        </div>
+
+        <div class="card">
+            <h2>Products</h2>
+            <p>{{ total_products }}</p>
+        </div>
+    </div>
+    <div class="links">
+        <a href="/">Home</a>
+        <a href="/customers">Customers</a>
+        <a href="/products">Products</a>
+        <a href="/orders">Orders</a>
+        <a href="/order_items">Order_Items</a>
+        <a href="/low_stock">Low_Stock</a>
+        <a href="/search_customer">Search Customer</a>
+        <a href="/search_product">Search Product</a>
+        <a href="/sales_report">Sales Report</a>
+    
+    </div>
+    
+</body>
+</html>

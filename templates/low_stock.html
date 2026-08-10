@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Low Stock{% endblock %}
+
+{% block content %}
+    <h1>Low Stock Report</h1>
+    <a href="/dashboard">Dashboard</a>
+    <br><br>
+    {% if products %}
+    <table>
+        <tr>
+            <th>Product ID</th>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Stock</th>
+        </tr>
+        {% for product in products %}
+        <tr>
+            <td>{{ product[0] }}</td>
+            <td>{{ product[1] }}</td>
+            <td>{{ product[2] }}</td>
+            <td>{{ product[3] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No low stock products found</p>
+    {% endif %}
+        
+
+{% endblock %}

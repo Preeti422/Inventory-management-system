@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Customers{% endblock %}
+
+{% block content %}
+ <h1>Search Customer</h1>
+
+    <a class="back" href="/dashboard">Dashboard</a>
+
+
+    <form method="POST">
+
+        <label>Customer Name:</label>
+
+        <input type="text" name="name" required>
+
+        <button type="submit">Search</button>
+
+    </form>
+
+    <br>
+
+    {% if customers %}
+
+    <h2>Search Results</h2>
+
+    <table>
+
+        <tr>
+            <th>Customer ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>City</th>
+        </tr>
+
+        {% for customer in customers %}
+
+        <tr>
+            <td>{{ customer[0] }}</td>
+            <td>{{ customer[1] }}</td>
+            <td>{{ customer[2] }}</td>
+            <td>{{ customer[3] }}</td>
+            <td>{{ customer[4] }}</td>
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+    {% elif searched %}
+
+    <p class="not-found">Customer Not Found!</p>
+
+    {% endif %}
+</div>
+{% endblock %}

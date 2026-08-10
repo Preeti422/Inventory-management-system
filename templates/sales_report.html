@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Customers{% endblock %}
+
+{% block content %}
+    <h1>Sales Report</h1>
+    <a href="/dashboard">Dashboard</a>
+
+    <br><br>
+
+    <h2>Total Sales: {{ total_sales }}</h2>
+
+    <br>
+
+    <table>
+
+        <tr>
+            <th>Order ID</th>
+            <th>Order Date</th>
+            <th>Customer</th>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total Amount</th>
+        </tr>
+
+        {% for sale in sales %}
+
+        <tr>
+            <td>{{ sale[0] }}</td>
+            <td>{{ sale[1] }}</td>
+            <td>{{ sale[2] }}</td>
+            <td>{{ sale[3] }}</td>
+            <td>{{ sale[4] }}</td>
+            <td>{{ sale[5] }}</td>
+            <td>{{ sale[6] }}</td>
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+    {% endblock %}

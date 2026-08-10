@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}Customers{% endblock %}
+
+{% block content %}
+ <h1>Products</h1>
+
+    <a href="/">Home</a>
+    <h2>Add Product</h2>
+    <form method="POST">
+
+    <label>Product Name:</label>
+    <input type="text" name="product_name" required>
+    <br><br>
+
+    <label>Price:</label>
+    <input type="number" name="price" step="0.01" min="0" required>
+    <br><br>
+
+    <label>Stock:</label>
+    <input type="number" name="stock" min="0" required>
+    <br><br>
+
+    <label>Category ID:</label>
+    <input type="number" name="category_id" required>
+    <br><br>
+
+    <button type="submit">Add Product</button>
+</form>
+
+
+
+
+<table>
+
+    <tr>
+        <th>ID</th>
+        <th>Product Name</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th>Category ID</th>
+        <th>Action</th>
+    </tr>
+
+    {% for product in products %}
+
+    <tr>
+        <td>{{ product[0] }}</td>
+        <td>{{ product[1] }}</td>
+        <td>{{ product[2] }}</td>
+        <td>{{ product[3] }}</td>
+        <td>{{ product[4] }}</td>
+
+        <td class="action">
+            <a href="/update_product/{{ product[0] }}">
+                Edit
+            </a>
+
+            <form method="POST"
+                  action="/delete_product/{{ product[0] }}"
+                  style="display:inline;">
+
+                <button type="submit">Delete</button>
+
+            </form>
+        </td>
+    </tr>
+
+    {% endfor %}
+
+</table>
+{% endblock %}

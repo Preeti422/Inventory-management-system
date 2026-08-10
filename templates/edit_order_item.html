@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Order Item</title>
+    <style>
+       body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f6fa;
+        margin: 0;
+        padding: 30px;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    form {
+        width: 500px;
+        max-width: 90%;
+        margin: 30px auto;
+        padding: 25px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    label {
+        display: inline-block;
+        width: 100px;
+        margin-bottom: 15px;
+    }
+
+    input {
+        padding: 9px;
+        width: 250px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    button {
+        padding: 9px 16px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        background-color: #222;
+        color: white;
+        margin-top: 10px;
+    }
+
+    button:hover {
+        background-color: #444;
+    }
+
+    a {
+        text-decoration: none;
+        color: #3498db;
+    }
+
+    .back {
+        display: block;
+        width: 500px;
+        max-width: 90%;
+        margin: 0 auto;
+    }
+ 
+    </style>
+</head>
+<body>
+    <h1>Edit Order Item</h1>
+
+    <form method="POST">
+
+    <label>Order ID:</label>
+    <input type="number" value="{{ item[1] }}" disabled>
+    <br><br>
+
+    <label>Product ID:</label>
+    <input type="number" value="{{ item[2] }}" disabled>
+    <br><br>
+
+    <label>Quantity:</label>
+    <input type="number"
+           name="quantity"
+           value="{{ item[3] }}"
+           min="1"
+           required>
+    <br><br>
+
+    <button type="submit">Update Order Item</button>
+
+</form>
+
+<br>
+
+<a class="back" href="/order_items">Back to Order Items</a>
+
+    
+</body>
+</html>
