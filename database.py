@@ -1,10 +1,11 @@
 import pymysql
+import os
 
 conn = pymysql.connect(
-    host="gateway01.ap-southeast-1.prod.aws.tidbcloud.com",
-    user="38jWyBcVqEC9YEJ.root",
-    password="lXL7ciUwZsBByfC0",
-    database="ecommerce",
+    host=os.environ.get("TIDB_HOST"),
+    user=os.environ.get("TIDB_USER"),
+    password=os.environ.get("TIDB_PASSWORD"),
+    database=os.environ.get("TIDB_DATABASE"),
     port=4000
 )
 
