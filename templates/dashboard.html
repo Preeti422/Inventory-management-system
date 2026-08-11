@@ -17,11 +17,13 @@
         }
 
         .container{
-            display:flex;
-            gap:20px;
-            justify-content:center;
-            margin-top:40px;
-        }
+             display:flex;
+             gap:20px;
+             justify-content:center;
+             margin-top:40px;
+             flex-wrap:wrap;
+               }
+
 
         .card{
             background-color: white;
@@ -29,7 +31,7 @@
             width:180px;
             text-align:center;
             border-radius:10px;
-            box-shadow:0 2px ;
+            box-shadow:0 2px 8px rgba(0,0,0,0.15);
 
         }
 
@@ -47,18 +49,18 @@
             margin-top:40px;
             padding:15px;
             background-color:#222;
+            border-radius:10px;
 
           
         }
 
         .links a {
             display:inline-block;
-            margin: 0 10px;
+            margin: 8;
             text-decoration:none;
             padding:10px 20px;
             border:1px solid white;
             border-radius:5px;
-            margin-top:50px;
             color:white;
             background-color: #333;
         }
@@ -100,6 +102,7 @@
         <a href="/search_customer">Search Customer</a>
         <a href="/search_product">Search Product</a>
         <a href="/sales_report">Sales Report</a>
+        <a href="/logout">Logout</a>
     
     </div>
     

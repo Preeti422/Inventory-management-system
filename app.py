@@ -1,15 +1,22 @@
-from flask import Flask, render_template,request,redirect
+from flask import Flask, render_template,request,redirect,session
 from database import conn
 
 app = Flask(__name__)
+app.secret_key="inventory-secret-key"
 
 @app.route("/")
 def home():
+    if "username" not in session:
+        return redirect("/login")
     return render_template("index.html")
 
 @app.route("/customers",methods=["GET","POST"])
 def customers():
+    if "username" not in session:
+        return redirect("/login")
     cursor = conn.cursor()
+
+    
     if request.method == "POST":
         name = request.form["name"]
         email = request.form["email"]
@@ -38,8 +45,11 @@ def customers():
 
 @app.route("/products", methods=["GET","POST"])
 def products():
+    if "username" not in session:
+        return redirect("/login")
 
     cursor=conn.cursor()
+    
     if request.method=="POST":
 
         product_name = request.form["product_name"]
@@ -67,6 +77,8 @@ def products():
 
 @app.route("/orders", methods=["GET","POST"])
 def orders():
+    if "username" not in session:
+        return redirect("/login")
     cursor=conn.cursor()
     if request.method=="POST":
         customer_id = request.form["customer_id"]
@@ -95,6 +107,8 @@ def orders():
 
 @app.route("/order_items",methods=["GET","POST"])
 def order_items():
+    if"username" not in session:
+        return redirect("/login")
     cursor=conn.cursor()
     if request.method=="POST":
         order_id=request.form["order_id"]
@@ -173,6 +187,9 @@ def order_items():
 
 @app.route("/dashboard")
 def dashboard():
+    if "username" not in session:
+        return redirect("/login")
+
     cursor=conn.cursor()
 
     #Total Sales
@@ -212,6 +229,8 @@ def dashboard():
 
 @app.route("/low_stock")
 def low_stock():
+    if "username" not in session:
+     return redirect("/login")
 
     cursor = conn.cursor()
 
@@ -229,6 +248,8 @@ def low_stock():
 
 @app.route("/search_customer", methods=["GET","POST"])
 def search_customer():
+    if "username" not in session:
+     return redirect("/login")
     customers=[]
     searched=False
 
@@ -249,6 +270,8 @@ def search_customer():
 
 @app.route("/search_product", methods=["GET", "POST"])
 def search_product():
+    if "username" not in session:
+     return redirect("/login")
 
     products = []
     searched = False
@@ -282,6 +305,8 @@ def search_product():
 
 @app.route("/update_product/<int:product_id>", methods=["GET","POST"])
 def update_product(product_id):
+    if "username" not in session:
+        return redirect("/login")
 
     cursor=conn.cursor()
     if request.method=="POST":
@@ -315,6 +340,8 @@ def update_product(product_id):
 
 @app.route("/delete_product/<int:product_id>", methods=["POST"])
 def delete_product(product_id):
+    if "username" not in session:
+        return redirect("/login")
 
     cursor = conn.cursor()
 
@@ -329,6 +356,8 @@ def delete_product(product_id):
 
 @app.route("/update_customer/<int:customer_id>", methods=["GET", "POST"])
 def update_customer(customer_id):
+    if "username" not in session:
+        return redirect("/login")
 
     cursor = conn.cursor()
 
@@ -373,6 +402,8 @@ def update_customer(customer_id):
 
 @app.route("/delete_customer/<int:customer_id>", methods=["POST"])
 def delete_customer(customer_id):
+    if "username" not in session:
+        return redirect("/login")
 
     cursor = conn.cursor()
 
@@ -397,6 +428,8 @@ def delete_customer(customer_id):
 
 @app.route("/sales_report")
 def sales_report():
+    if "username" not in session:
+        return redirect("/login")
 
     cursor = conn.cursor()
 
@@ -438,6 +471,8 @@ ORDER BY o.order_date DESC
 
 @app.route("/edit_order_items/<int:id>", methods=["GET","POST"])
 def edit_order_items(id):
+    if "username" not in session:
+        return redirect("/login")
 
     cursor=conn.cursor()
     if request.method=="POST":
@@ -522,6 +557,8 @@ def edit_order_items(id):
 
 @app.route("/delete_order_item/<int:id>", methods=["POST"])
 def delete_order_item(id):
+    if "username" not in session:
+        return redirect("/login")
 
     cursor = conn.cursor()
 
@@ -572,6 +609,8 @@ def delete_order_item(id):
 
 @app.route("/edit_order/<int:id>", methods=["GET", "POST"])
 def edit_order(id):
+    if "username" not in session:
+        return redirect["/login"]
 
     cursor = conn.cursor()
 
@@ -606,6 +645,8 @@ def edit_order(id):
 
 @app.route("/delete_order/<int:id>", methods=["POST"])
 def delete_order(id):
+    if "username" not in session:
+        return redirect("/login")
 
     cursor = conn.cursor()
 
@@ -637,9 +678,39 @@ def delete_order(id):
     conn.commit()
 
     return redirect("/orders")
+@app.route("/login", methods=["GET", "POST"])
+def login():
+
+    if request.method == "POST":
+
+        username = request.form["username"]
+        password = request.form["password"]
+
+        cursor = conn.cursor()
+
+        cursor.execute(
+            "SELECT * FROM users WHERE username=%s AND password=%s",
+            (username, password)
+        )
+
+        user = cursor.fetchone()
+
+        if user:
+            session["username"] = username
+            return redirect("/dashboard")
+
+        return render_template(
+            "login.html",
+            error="Invalid username or password"
+        )
+
+    return render_template("login.html")
 
 
-
+@app.route("/logout")
+def logout():
+    session.pop("username", None)
+    return redirect("/login")
 
 
     
