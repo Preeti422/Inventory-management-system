@@ -1,13 +1,11 @@
 import pymysql
 
 conn = pymysql.connect(
-    host="127.0.0.1",
-    user="root",
-    password="Preeti123",
+    host="gateway01.ap-southeast-1.prod.aws.tidbcloud.com",
+    user="38jWyBcVqEC9YEJ.root",
+    password="lXL7ciUwZsBByfC0",
     database="ecommerce",
-    port=3307
+    port=4000
 )
 
-
-
-print("Database Connected Successfully!")
+print("Database Connected Successfully")
